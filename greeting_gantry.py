@@ -22,6 +22,10 @@ def play_animation_while_person_detected(video_path, cam_check, pose):
     print(f"🎞️ Playing: {video_path}")
     anim = cv2.VideoCapture(video_path)
 
+    # Set fullscreen window
+    cv2.namedWindow("Interactive Character", cv2.WND_PROP_FULLSCREEN)
+    cv2.setWindowProperty("Interactive Character", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+
     while True:
         ret, frame = anim.read()
         if not ret:
@@ -71,6 +75,11 @@ while True:
     # Idle mode display
     if not person_detected:
         person_present = False
+
+    # Set fullscreen window for idle camera
+    cv2.namedWindow("Idle Camera", cv2.WND_PROP_FULLSCREEN)
+    cv2.setWindowProperty("Idle Camera", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+
 
     cv2.putText(frame, "👋 Waiting for visitors...", (50, 50),
                 cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 255, 255), 3)
